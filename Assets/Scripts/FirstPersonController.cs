@@ -29,7 +29,7 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private KeyCode interactKey = KeyCode.F;
 
     [Header("Health parameters")]
-    [SerializeField] private float maxHealth = 100;
+    [SerializeField] public float maxHealth = 100;
     [SerializeField] private float timeBeforeHealthRegen = 3;
   // [SerializeField] private float healthValueIncrement = 1;
     [SerializeField] private float healthTimeIncrement = 0.1f;
@@ -348,6 +348,24 @@ public class FirstPersonController : MonoBehaviour
         if (ShouldCrouch)
             StartCoroutine(CrouchStand());
     }
+
+    public void EnemyDamage(float damage) 
+    {
+        Debug.Log("Health of the player" + currentHealth);
+
+        currentHealth -= damage;
+        if (currentHealth <= 0.0f)
+        {
+            Debug.Log("Player died due to enemy");
+        }
+        else if (currentHealth >= 0.0f)
+        {
+            StartCoroutine(RegenerateHealth());
+            if(currentHealth >= 100f)
+                StopCoroutine(RegenerateHealth());
+        }
+    }  
+
     private IEnumerator CrouchStand()
     {
         if (isCrouching && Physics.Raycast(playerCamera.transform.position, Vector3.up, 20f))
