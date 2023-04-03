@@ -11,6 +11,7 @@ public class BasicGun : MonoBehaviour
     [SerializeField] private KeyCode fireGun = KeyCode.Mouse0;
 
     [SerializeField] public Camera fpsCameraRef;
+    [SerializeField] public ParticleSystem muzzleFlash;
 
     private void Awake()
     {
@@ -27,6 +28,7 @@ public class BasicGun : MonoBehaviour
     }
     void Shoot() 
     {
+        muzzleFlash.Play();
         RaycastHit hit;
         if (Physics.Raycast(fpsCameraRef.transform.position, fpsCameraRef.transform.forward, out hit, range))
         {
