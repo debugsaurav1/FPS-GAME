@@ -12,17 +12,25 @@ public class BasicGun : MonoBehaviour
 
     [SerializeField] public Camera fpsCameraRef;
     [SerializeField] public ParticleSystem muzzleFlash;
+    [SerializeField] public GameObject bulletImpact;
+    [SerializeField] public float bulletImpactForce;
+    [SerializeField] public float rateOfFire;
+
+    private float nextTimeToFire = 0f;
 
     private void Awake()
     {
-        damage = 10;
-        range = 100;
+        damage = 10f;
+        range = 100f;
+        rateOfFire = 1f;
+        bulletImpactForce = 5f;
     }
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(fireGun))
+        if (Input.GetKey(fireGun) && Time.time >= nextTimeToFire )
         {
+            nextTimeToFire = Time.time + 1f/rateOfFire;
             Shoot();
         }
     }
@@ -39,6 +47,13 @@ public class BasicGun : MonoBehaviour
             {
                 target.TakeDamage(damage);
             }
+
+            if (hit.rigidbody != null)
+            {
+                hit.rigidbody.AddForce(-hit.normal * bulletImpactForce);
+            }
+            GameObject impactGo = Instantiate(bulletImpact, hit.point, Quaternion.LookRotation(hit.normal));
+            Destroy(impactGo, 2f);
         }
     }
 }
