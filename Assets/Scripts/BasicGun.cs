@@ -20,7 +20,8 @@ public class BasicGun : MonoBehaviour
 
     private void Awake()
     {
-        damage = 10f;
+        
+        damage = 50f;
         range = 100f;
         rateOfFire = 1f;
         bulletImpactForce = 5f;

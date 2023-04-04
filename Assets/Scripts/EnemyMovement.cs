@@ -17,20 +17,21 @@ public class EnemyMovement : MonoBehaviour
     private float punchTimer;
     private float attackDelay;
 
-
     [Header("Health parameters")]
     [SerializeField] public float health;
 
+    public FirstPersonController FirstPersonControllerScript;
     private void Start()
     {
         enemyAnimator = GetComponent<Animator>();
         punchTimer = 0;
     }
     private void Awake()
+   
     {
-        playerTarget = player.transform;
+        GameObject playerObject = GameObject.FindWithTag("Player");
+        playerTarget = playerObject.transform;
         health = 100f;
-
     }
     void Update()
     {
@@ -63,7 +64,8 @@ public class EnemyMovement : MonoBehaviour
     }
     void Die() 
     {
-        Destroy(this.gameObject);
+        Destroy(this.gameObject);     
+        FirstPersonControllerScript.UpdateKillScore();
     }
     public void StartAttack() 
     {

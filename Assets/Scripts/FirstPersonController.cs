@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
+
 public class FirstPersonController : MonoBehaviour
 {
     public bool CanMove { get; private set; } = true;
@@ -38,7 +39,6 @@ public class FirstPersonController : MonoBehaviour
     public static Action<float> OnTakeDamage;
     public static Action<float> OnDamage;
     public static Action<float> OnHeal;
-
 
 
     [Header("Movement Controller")]
@@ -147,6 +147,13 @@ public class FirstPersonController : MonoBehaviour
 
     public static FirstPersonController instance;
 
+    public int killScore = 0;
+
+    public void UpdateKillScore()
+    {
+        killScore++;
+    }
+
     private void OnEnable()
     {
         OnTakeDamage += ApplyDamage;
@@ -156,10 +163,15 @@ public class FirstPersonController : MonoBehaviour
     {
         OnTakeDamage -= ApplyDamage;
     }
-
-    void Awake()
+    public HealthBar healthBar;
+    private void Start()
     {
         currentHealth = maxHealth;
+        healthBar.SetMaxHealth((int)currentHealth);
+    }
+    void Awake()
+    {
+        
         instance = this;
         playerCamera = GetComponentInChildren<Camera>();
         characterController = GetComponent<CharacterController>();
@@ -167,6 +179,7 @@ public class FirstPersonController : MonoBehaviour
         defaultFOV = playerCamera.fieldOfView;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
     }
     // Update is called once per frame
     void Update()
@@ -352,18 +365,22 @@ public class FirstPersonController : MonoBehaviour
     public void EnemyDamage(float damage) 
     {
         Debug.Log("Health of the player" + currentHealth);
-
+        
         currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
         if (currentHealth <= 0.0f)
         {
             Debug.Log("Player died due to enemy");
+            StopCoroutine(RegenerateHealth());
         }
-        else if (currentHealth >= 0.0f)
+        if (currentHealth >= 0.0f)
         {
             StartCoroutine(RegenerateHealth());
             if(currentHealth >= 100f)
                 StopCoroutine(RegenerateHealth());
         }
+        Debug.Log("Health remaining" + currentHealth);
+        
     }  
 
     private IEnumerator CrouchStand()
@@ -423,6 +440,7 @@ public class FirstPersonController : MonoBehaviour
 
             OnHeal?.Invoke(currentHealth);
             yield return timeToWait;
+            healthBar.SetHealth(currentHealth);
         }
         regeneratingHealth = null;
     }
