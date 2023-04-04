@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class FirstPersonController : MonoBehaviour
@@ -147,13 +149,15 @@ public class FirstPersonController : MonoBehaviour
 
     public static FirstPersonController instance;
 
-    public int killScore = 0;
+    private int killScore = 0;
+    public Text killScoreText; 
 
     public void UpdateKillScore()
     {
         killScore++;
+        killScoreText.text = "Kills: " + killScore.ToString();
     }
-
+    
     private void OnEnable()
     {
         OnTakeDamage += ApplyDamage;
@@ -184,6 +188,7 @@ public class FirstPersonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (CanMove)
         {
             HandleKeyboardInput();

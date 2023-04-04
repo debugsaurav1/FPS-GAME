@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
 public class EnemyMovement : MonoBehaviour
@@ -21,6 +22,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] public float health;
 
     public FirstPersonController FirstPersonControllerScript;
+    public Text killScoreText;
     private void Start()
     {
         enemyAnimator = GetComponent<Animator>();
