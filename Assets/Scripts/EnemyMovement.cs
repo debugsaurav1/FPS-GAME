@@ -61,14 +61,16 @@ public class EnemyMovement : MonoBehaviour
         health -= damageAmount;
         if (health <= 0f)
         {
+            
             Die();
         }
     }
     void Die() 
     {
-        Destroy(this.gameObject);     
+        Destroy(this.gameObject);
         FirstPersonControllerScript.UpdateKillScore();
     }
+        
     public void StartAttack() 
     {
         attackDelay += Time.deltaTime;

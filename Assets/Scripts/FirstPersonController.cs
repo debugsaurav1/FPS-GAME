@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
 public class FirstPersonController : MonoBehaviour
 {
+
     public bool CanMove { get; private set; } = true;
     private bool IsSprinting => canSprint && Input.GetKey(sprintKey);
     private bool ShouldJump => Input.GetKeyDown(jumpKey) && characterController.isGrounded;
@@ -188,8 +190,13 @@ public class FirstPersonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if (CanMove)
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("Menu");
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+            if (CanMove)
         {
             HandleKeyboardInput();
             HandleMouseInput();
@@ -266,8 +273,6 @@ public class FirstPersonController : MonoBehaviour
         currentHealth = 0;
         if (regeneratingHealth != null)
             StopCoroutine(RegenerateHealth());
-
-        print("Dead");
     }
     private void HandleHeadBob()
     {
@@ -368,14 +373,11 @@ public class FirstPersonController : MonoBehaviour
     }
 
     public void EnemyDamage(float damage) 
-    {
-        Debug.Log("Health of the player" + currentHealth);
-        
+    { 
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
         if (currentHealth <= 0.0f)
         {
-            Debug.Log("Player died due to enemy");
             StopCoroutine(RegenerateHealth());
         }
         if (currentHealth >= 0.0f)
@@ -384,8 +386,6 @@ public class FirstPersonController : MonoBehaviour
             if(currentHealth >= 100f)
                 StopCoroutine(RegenerateHealth());
         }
-        Debug.Log("Health remaining" + currentHealth);
-        
     }  
 
     private IEnumerator CrouchStand()

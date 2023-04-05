@@ -6,26 +6,18 @@ using UnityEngine;
 public class BasicGun : MonoBehaviour
 {
     [Header("Gun Properties")]
-    [SerializeField] public float damage;
-    [SerializeField] public float range;
+    [SerializeField] public float damage = 50f;
+    [SerializeField] public float range = 100f;
     [SerializeField] private KeyCode fireGun = KeyCode.Mouse0;
 
     [SerializeField] public Camera fpsCameraRef;
     [SerializeField] public ParticleSystem muzzleFlash;
     [SerializeField] public GameObject bulletImpact;
-    [SerializeField] public float bulletImpactForce;
-    [SerializeField] public float rateOfFire;
+    [SerializeField] public float bulletImpactForce = 80f;
+    [SerializeField] public float rateOfFire = 5f;
 
     private float nextTimeToFire = 0f;
 
-    private void Awake()
-    {
-        
-        damage = 50f;
-        range = 100f;
-        rateOfFire = 1f;
-        bulletImpactForce = 5f;
-    }
     // Update is called once per frame
     void Update()
     {
