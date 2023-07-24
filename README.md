@@ -27,21 +27,18 @@ To use this project, follow these steps:
 
     Clone the repository using the following command:
 
-    bash
 
-    git clone https://github.com/your-username/fps-controller-with-shooting.git
-
-    [Add any specific setup instructions or dependencies here]
+    ```git clone https://github.com/debugsaurav1/fps-controller-with-shooting.git```
 
 Usage
 
-[Provide instructions on how to use your project here. Include details on how to run the game and any other relevant information for users.]
 Controls
 
     W, A, S, D: Move the player forward, left, backward, and right.
     Mouse movement: Control the camera view.
-    Left Mouse Button: Shoot projectiles.
-    [Add any other control instructions here]
+    Left Mouse Button: Shoot
+    Left Control : Crouch
+    Left Shift: Sprint.
 
 Contributing
 
@@ -56,11 +53,6 @@ Contributions are welcome! If you want to contribute to this project, follow the
 Please ensure your pull request follows the project's coding conventions and style guide.
 License
 
-[Include information about the project's license. For example:]
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 Acknowledgments
-
-[If your project uses any external libraries, assets, or tutorials, acknowledge them here.]
-
-Feel free to customize this template to fit your project's specific details and needs. Make sure to provide clear and concise information to make it easy for others to understand and use your FPS controller script with shooting and enemy mechanics. Happy coding!
