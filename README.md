@@ -1,16 +1,5 @@
 FPS Controller with Shooting and Basic Enemy
 
-Gameplay
-Table of Contents
-
-    Introduction
-    Features
-    Installation
-    Usage
-    Controls
-    Contributing
-    License
-
 Introduction
 
 This repository contains an FPS controller script for a simple game with shooting mechanics and a basic enemy that follows the player. The player is well-built, and the game is playable, but there's still room for improvement and additional features.
