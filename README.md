@@ -16,19 +16,18 @@ Introduction
 This repository contains an FPS controller script for a simple game with shooting mechanics and a basic enemy that follows the player. The player is well-built, and the game is playable, but there's still room for improvement and additional features.
 Features
 
-    First-person controller with basic movement and camera control.
-    Shooting mechanism with simple projectile instantiation.
-    Basic enemy AI that follows the player.
-    [Add any other features or mechanics here]
+   First-person controller with movement and camera control including customization option that can be done directly via Unity Editor. 
+   Shooting mechanism with raycasting.
+   Basic enemy that follows the player.
 
 Installation
 
 To use this project, follow these steps:
 
-    Clone the repository using the following command:
+Clone the repository using the following command:
 
 
-    ```git clone https://github.com/debugsaurav1/fps-controller-with-shooting.git```
+    git clone https://github.com/debugsaurav1/fps-controller-with-shooting.git
 
 Usage
 
