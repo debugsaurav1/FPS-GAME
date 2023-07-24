@@ -50,8 +50,3 @@ Contributions are welcome! If you want to contribute to this project, follow the
     Submit a pull request.
 
 Please ensure your pull request follows the project's coding conventions and style guide.
-License
-
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-Acknowledgments
